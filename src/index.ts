@@ -3,6 +3,8 @@ import { ChatOpenAI } from "@langchain/openai";
 import { ChatAnthropic } from "@langchain/anthropic";
 import { HumanMessage, SystemMessage } from "@langchain/core/messages";
 import { StringOutputParser } from "@langchain/core/output_parsers";
+import { RunnableLambda } from "@langchain/core/runnables";
+import { ChatPromptTemplate } from "@langchain/core/prompts";
 
 // ============================================
 // 1. 基础调用：直接调用模型
@@ -66,9 +68,19 @@ async function streamOutput() {
 // ============================================
 // 3. Chain 组合：模型 + 输出解析器
 // ============================================
+const wordCounter = RunnableLambda.from((text: string) => {
+  return {
+    text,
+    wordCount: text.split(/\s+/).filter(Boolean).length,
+    charCount: text.length,
+  };
+});
 async function chainExample() {
   console.log("=== Chain 组合 ===\n");
-
+  const prompt = ChatPromptTemplate.fromMessages([
+    ["system", "你是翻译助手，把中文翻译成 {language}，只输出译文。"],
+    ["human", "{text}"],
+  ]);
   const model = new ChatOpenAI({
     model: "deepseek-v4-flash", // DeepSeek 支持的模型
     configuration: {
@@ -79,12 +91,16 @@ async function chainExample() {
   });
 
   // 使用 pipe() 将模型和输出解析器连接成 Chain
-  const chain = model.pipe(new StringOutputParser());
+  const chain = prompt
+    .pipe(model)
+    .pipe(new StringOutputParser())
+    .pipe(wordCounter);
 
   // invoke 的返回值直接是 string，不再是 AIMessage
-  const result: string = await chain.invoke([
-    new HumanMessage("用一个词形容 TypeScript。"),
-  ]);
+  const result = await chain.invoke({
+    language: "英文",
+    text: "今天天气真好",
+  });
 
   console.log("解析后的结果:", result);
   console.log("结果类型:", typeof result);
