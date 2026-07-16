@@ -5,7 +5,8 @@ import { HumanMessage, SystemMessage } from "@langchain/core/messages";
 import { StringOutputParser } from "@langchain/core/output_parsers";
 import { RunnableLambda } from "@langchain/core/runnables";
 import { ChatPromptTemplate } from "@langchain/core/prompts";
-
+import RunnablePassthroughDemo from "./1-RunnablePassthrough.js";
+import demo2 from "./2.Lecel例子.js";
 // ============================================
 // 1. 基础调用：直接调用模型
 // ============================================
@@ -114,9 +115,11 @@ async function main() {
   console.log("LangChain.js 环境验证\n");
 
   try {
-    await basicInvoke();
-    await streamOutput();
-    await chainExample();
+    // await basicInvoke();
+    // await streamOutput();
+    // await chainExample();
+    // RunnablePassthroughDemo();
+    demo2();
     console.log("[OK] 所有验证通过，环境已准备就绪。");
   } catch (error) {
     console.error("[FAIL] 验证失败:", error);
