@@ -5,14 +5,17 @@ import { HumanMessage, SystemMessage } from "@langchain/core/messages";
 import { StringOutputParser } from "@langchain/core/output_parsers";
 import { RunnableLambda } from "@langchain/core/runnables";
 import { ChatPromptTemplate } from "@langchain/core/prompts";
-import RunnablePassthroughDemo from "./1-RunnablePassthrough.js";
-import demo2 from "./2.Lecel例子.js";
+// import RunnablePassthroughDemo from "./1-RunnablePassthrough.js";
+// import demo2 from "./2.Lecel例子.js";
+// import demo3 from "./3.PromptTemplates例子.js";
+// import demo4 from "./4.OutputParsers例子.js";
+// import demo5 from './5.translation-pipeline顺序链例子'
+import demo6 from "./6.RunnableParallel 并行链.js";
 // ============================================
 // 1. 基础调用：直接调用模型
 // ============================================
 async function basicInvoke() {
   console.log("=== 基础调用 ===\n");
-
   // 选择你有 API Key 的 Provider，注释掉另一个
   const model = new ChatOpenAI({
     model: "deepseek-v4-flash", // DeepSeek 支持的模型：deepseek-v4-pro 或 deepseek-v4-flash
@@ -119,7 +122,11 @@ async function main() {
     // await streamOutput();
     // await chainExample();
     // RunnablePassthroughDemo();
-    demo2();
+    // demo2();
+    // demo3();
+    // demo4();
+    //demo5();
+    demo6();
     console.log("[OK] 所有验证通过，环境已准备就绪。");
   } catch (error) {
     console.error("[FAIL] 验证失败:", error);
