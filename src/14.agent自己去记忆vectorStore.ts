@@ -6,9 +6,14 @@ import { MemoryVectorStore } from "@langchain/classic/vectorstores/memory";
 import { Document } from "@langchain/core/documents";
 import { tool } from "@langchain/core/tools";
 import { z } from "zod";
+import { deepseekModel } from "./model/index.js";
+import { FakeEmbeddings } from "@langchain/core/utils/testing";
 
 export default async () => {
-  const embeddings = new OpenAIEmbeddings({ model: "text-embedding-3-small" });
+  //   const embeddings = new OpenAIEmbeddings({ model: "text-embedding-3-small" });
+  const embeddings = new FakeEmbeddings({
+    size: 1536, // 模拟 OpenAI text-embedding-3-small 的维度
+  });
   const vectorStore = new MemoryVectorStore(embeddings);
 
   // 工具 1：检索历史
@@ -50,7 +55,7 @@ export default async () => {
   );
 
   const agent = createAgent({
-    model: "anthropic:claude-sonnet-4-6",
+    model: deepseekModel,
     tools: [recallMemory, saveMemory],
     systemPrompt: `你是一个有长期记忆的助手。
 - 用户透露身份、偏好等信息时，主动调 save_memory 记下来
