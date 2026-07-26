@@ -20,7 +20,11 @@
   },
   "dependencies": {
     "@langchain/anthropic": "^1.5.1",
+    "@langchain/classic": "^1.0.40",
+    "@langchain/community": "^1.1.28",
     "@langchain/core": "^1.2.3",
+    "@langchain/deepseek": "^1.1.5",
+    "@langchain/langgraph": "^1.4.8",
     "@langchain/openai": "^1.5.5",
     "dotenv": "^17.4.2",
     "langchain": "^1.5.3"

@@ -10,7 +10,14 @@ import { ChatPromptTemplate } from "@langchain/core/prompts";
 // import demo3 from "./3.PromptTemplates例子.js";
 // import demo4 from "./4.OutputParsers例子.js";
 // import demo5 from './5.translation-pipeline顺序链例子'
-import demo6 from "./6.RunnableParallel 并行链.js";
+// import demo6 from "./6.RunnableParallel 并行链.js";
+// import demo7 from "./7.RunnableBranch先分类在回复.js";
+// import demo9 from "./9.流式stream和streamEvents.js";
+// import demo10 from "./10.Fallback与重试.js";
+// import demo11 from "./11.第一个有记忆的agent.js";
+// import demo12 from "./12.短期记忆.js";
+// import demo13 from "./13.middleware压缩历史.js";
+import demo14 from "./14.agent自己去记忆vectorStore.js";
 // ============================================
 // 1. 基础调用：直接调用模型
 // ============================================
@@ -126,7 +133,14 @@ async function main() {
     // demo3();
     // demo4();
     //demo5();
-    demo6();
+    // demo6();
+    // demo7();
+    // demo9();
+    // demo10();
+    // demo11();
+    // demo12();
+    // demo13();
+    demo14();
     console.log("[OK] 所有验证通过，环境已准备就绪。");
   } catch (error) {
     console.error("[FAIL] 验证失败:", error);
