@@ -22,9 +22,12 @@ import { ChatPromptTemplate } from "@langchain/core/prompts";
 // import demo17 from "./17.store语义召回.js";
 // import demo18 from "./18.Tool 接口与定义.js";
 // import demo20 from "./20.模型并行调用工具.js";
-import demo21 from "./21.McpServer工具使用.js";
+// import demo21 from "./21.McpServer工具使用.js";
+// import demo22 from "./22.自己定义一个本地MCP工具.js";
 // import demo23 from "./23.自己定义一个远程MCP工具-Server端.js";  // 服务端：先启动这个
 // import demo24 from "./24.使用远程MCP工具-Client端.js";          // 客户端：再启动这个
+// import demo26 from "./26.第一个ReAct-Agent.js";
+import demo27 from "./27.ReAct-Agent查看模型思考.js";
 // ============================================
 // 1. 基础调用：直接调用模型
 // ============================================
@@ -152,7 +155,10 @@ async function main() {
     // demo17();
     // demo18();
     // demo20();
-    demo21();
+    // demo21();
+    // demo22();
+    // demo26();
+    demo27();
     console.log("[OK] 所有验证通过，环境已准备就绪。");
   } catch (error) {
     console.error("[FAIL] 验证失败:", error);
